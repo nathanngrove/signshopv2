@@ -10,7 +10,7 @@ function TableData({ className, children }: TableDataProps) {
 	return (
 		<td
 			className={twMerge(
-				"border-1 border-r-0 border-t-0 p-1",
+				"border-stater-red border-1 border-r-0 border-t-0 p-1 bg-stater-offwhite text-black dark:bg-stater-lite-grey dark:text-white",
 				className
 			)}>
 			{children}

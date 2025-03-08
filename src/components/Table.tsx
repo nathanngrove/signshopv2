@@ -10,7 +10,7 @@ type TableProps = {
 
 function Table({ headerColumns, bodyData, footerRow }: TableProps) {
 	return (
-		<table className="border-spacing-0 border-separate rounded-md">
+		<table className="border-spacing-0 border-separate rounded-md ">
 			<thead>
 				<tr>
 					{headerColumns.map((header, i) =>
