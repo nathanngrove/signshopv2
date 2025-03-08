@@ -1,16 +1,17 @@
 import React from "react";
 import TableData from "./TableData";
 import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 type TableProps = {
-	headerColumns: string[];
-	bodyData: any[];
-	footerRow: any[];
+	headerColumns: Array<string>;
+	bodyData: Array<object>;
+	footerRow?: any[];
 };
 
 function Table({ headerColumns, bodyData, footerRow }: TableProps) {
 	return (
-		<table className="border-spacing-0 border-separate rounded-md ">
+		<table className="border-spacing-0 border-separate rounded-md w-full">
 			<thead>
 				<tr>
 					{headerColumns.map((header, i) =>
@@ -30,38 +31,28 @@ function Table({ headerColumns, bodyData, footerRow }: TableProps) {
 					)}
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					{bodyData.map((data, i) =>
-						i === bodyData.length - 1 ? (
-							<TableData className="border-r-1" key={i}>
-								{data}
-							</TableData>
-						) : (
-							<TableData key={i}>{data}</TableData>
-						)
-					)}
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					{footerRow.map((row, i) =>
-						i === footerRow.length - 1 ? (
-							<TableData
-								className="border-r-1 rounded-br-md"
-								key={i}>
-								{row}
-							</TableData>
-						) : i === 0 ? (
-							<TableData className="rounded-bl-md" key={i}>
-								{row}
-							</TableData>
-						) : (
-							<TableData key={i}>{row}</TableData>
-						)
-					)}
-				</tr>
-			</tfoot>
+			<TableBody data={bodyData} hasFooter={footerRow ? true : false} />
+			{footerRow ? (
+				<tfoot>
+					<tr>
+						{footerRow.map((row, i) =>
+							i === footerRow.length - 1 ? (
+								<TableData
+									className="border-r-1 rounded-br-md"
+									key={i}>
+									{row}
+								</TableData>
+							) : i === 0 ? (
+								<TableData className="rounded-bl-md" key={i}>
+									{row}
+								</TableData>
+							) : (
+								<TableData key={i}>{row}</TableData>
+							)
+						)}
+					</tr>
+				</tfoot>
+			) : null}
 		</table>
 	);
 }
